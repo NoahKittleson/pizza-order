@@ -15,32 +15,46 @@ Pizza.prototype.getPrice = function () {
 
 Pizza.prototype.getName = function() {
     var string = "";
-    string = string.concat(this.size + " inch pizza with ");
-    for (var i = 0; i < this.toppings.length; i++) {
-      string = string.concat(this.toppings[i] + " ");
+    string = string.concat(this.size + " inch pizza ");
+    if (this.toppings.length > 0) {
+      string = string.concat("with ");
+      for (var i = 0; i < this.toppings.length; i++) {
+        if (this.toppings.length > 1) {
+          if (i === this.toppings.length - 1) {
+            string = string.concat("& " + this.toppings[i]);
+          } else {
+            string = string.concat(this.toppings[i] + ", ");
+          }
+        } else {
+          string = string.concat(this.toppings[i]);
+        }
+      }
     }
     return string;
 }
 
 var pizzaOrder = [];
+var orderCost = 0;
 
 $(document).ready(function() {
   $("form").submit(function(event) {
     event.preventDefault();
-
+    //read input
     var orderCost = 0;
     var toppings = [];
     var size = parseInt($("#size").val());
     $("input:checkbox[name=toppings]:checked").each(function(){
-        toppings.push($(this).val());
+      toppings.push($(this).val());
     });
     var newPizza = new Pizza (toppings, size);
     pizzaOrder.push(newPizza);
+    //display input
     $(".order").show();
-    $(".order").empty();
+    $(".order").children("ul").last().empty();
+    $(".order").children("p").last().empty();
     for (var i = 0; i < pizzaOrder.length; i++) {
       orderCost += pizzaOrder[i].getPrice();
-      $(".order").append("<li>" + pizzaOrder[i].getName() + " - $"+ pizzaOrder[i].getPrice().toFixed(2) + "</li>")
+      $(".order").children("ul").last().append("<li>" + pizzaOrder[i].getName() + " - $"+ pizzaOrder[i].getPrice().toFixed(2) + "</li>")
     }
     $(".order").append("<p>Total: $" + orderCost.toFixed(2) + "</p>")
   });

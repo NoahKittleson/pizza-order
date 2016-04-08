@@ -5,3 +5,18 @@
 .form-control {
   width: 50%;
 }
+
+.head {
+  background-color: #459E3D;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.head h1{
+
+}
+
+form {
+  border: solid, 3px, black;
+}
