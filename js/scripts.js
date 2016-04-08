@@ -70,8 +70,9 @@ $(document).ready(function() {
     }
     $(".order").append("<p>Total: $" + pizzaOrder.getPrice() + "</p>")
   });
+
   $("#placeOrder").click(function() {
-    alert("Your Pizzas are ordered.  Don't worry about inputting address or payment info, we'll find ya!\n\nTotal Price: $" + pizzaOrder.getPrice());
+    alert("Your Pizzas are ordered.  Don't worry about inputting address or payment info, we'll find ya!\n\n" + pizzaOrder.pizzas.length + " pizzas\nPrice: $" + pizzaOrder.getPrice());
     location.reload();
   });
 });
