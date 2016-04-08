@@ -71,8 +71,9 @@ $(document).ready(function() {
     $(".order").append("<p>Total: $" + pizzaOrder.getPrice() + "</p>")
   });
   $("#placeOrder").click(function() {
-    alert(pizzaOrder.getPrice());
-  })
+    alert("Your Pizzas are ordered.  Don't worry about inputting address or payment info, we'll find ya!\n\nTotal Price: $" + pizzaOrder.getPrice());
+    location.reload();
+  });
 });
 
 function clearOrder() {
